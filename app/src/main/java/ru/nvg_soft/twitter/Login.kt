@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.support.annotation.RequiresPermission
 import android.support.v4.app.ActivityCompat
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -100,6 +101,7 @@ class Login : AppCompatActivity() {
     }
     fun loadTweets(){
         var currentUser = mAuth!!.currentUser
+        Log.d("myLog","User ${currentUser!!.email} id ${currentUser.uid}")
         if (currentUser!=null) {
 
             var intent = Intent(this, MainActivity::class.java)
@@ -125,7 +127,7 @@ class Login : AppCompatActivity() {
     val PICK_IMAGE_CODE = 123
     fun loadImage(){
         var intent = Intent(Intent.ACTION_PICK,
-            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent,PICK_IMAGE_CODE)
     }
 
